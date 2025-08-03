@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 100% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 255 100% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 255 100% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 345 100% 85%; /* #ffd4df */
+    --primary-foreground: 330 40% 9.8%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 345 100% 85%;
+    --radius: 0.75rem;
+    --chart-1: 345 100% 85%;
+    --chart-2: 240 5.9% 10%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 5.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 345 100% 85%; /* #ffd4df */
+    --primary-foreground: 330 40% 9.8%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 345 100% 85%;
+    --chart-1: 345 100% 85%;
+    --chart-2: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', 'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+.animated-background {
+    background-color: hsl(var(--background));
+    background-image:
+        radial-gradient(at 27% 37%, hsla(var(--primary), 0.1) 0px, transparent 50%),
+        radial-gradient(at 97% 21%, hsla(var(--accent), 0.1) 0px, transparent 50%),
+        radial-gradient(at 75% 26%, hsla(var(--secondary), 0.1) 0px, transparent 50%),
+        radial-gradient(at 49% 96%, hsla(var(--primary), 0.15) 0px, transparent 50%),
+        radial-gradient(at 16% 23%, hsla(var(--muted), 0.1) 0px, transparent 50%),
+        radial-gradient(at 39% 36%, hsla(var(--primary), 0.1) 0px, transparent 50%),
+        radial-gradient(at 13% 83%, hsla(var(--secondary), 0.1) 0px, transparent 50%);
+    background-size: 150% 150%;
+    animation: gradientShift 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass-effect {
+  background: hsla(var(--card) / 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsla(var(--border) / 0.2);
+}
+
+.dark .glass-effect {
+  background: hsla(var(--card) / 0.2);
+  border: 1px solid hsla(var(--border) / 0.1);
+}
+
+
+/* Responsive Table Styles */
+@media screen and (max-width: 768px) {
+  .responsive-table {
+    @apply block w-full;
+  }
+  .responsive-table thead {
+    @apply hidden;
+  }
+  .responsive-table tbody {
+    @apply block w-full;
+  }
+  .responsive-table tr {
+    @apply block mb-4 rounded-lg border bg-card/80 shadow-sm;
+  }
+  .responsive-table td {
+    @apply flex justify-between items-center p-3 text-right border-b;
+  }
+  .responsive-table td:last-child {
+    @apply border-b-0;
+  }
+  .responsive-table td::before {
+    content: attr(data-label);
+    @apply font-semibold text-left text-muted-foreground pr-4;
+  }
+  .responsive-table td.flex-col-mobile {
+    @apply flex-col items-end;
+  }
+}
+
+/* Responsive Tabs */
+@media screen and (max-width: 768px) {
+    .responsive-tabs-list {
+        @apply flex-col items-stretch h-auto;
+    }
+}
